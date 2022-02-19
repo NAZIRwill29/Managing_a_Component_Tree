@@ -1,17 +1,12 @@
 import React, { useState } from "react";
 
 function TodoItem(props) {
-  //for crossstate
-  const [isDone, setIsDone] = useState(false);
-  //cross the text
-  function crossText() {
-    setIsDone(true);
-  }
-
   return (
     <li
-      style={{ textDecoration: isDone ? "line-through" : "none" }}
-      onClick={crossText}
+      onClick={() => {
+        //pass the id to func from onChecked in App comp
+        props.onChecked(props.id);
+      }}
     >
       {props.item}
     </li>

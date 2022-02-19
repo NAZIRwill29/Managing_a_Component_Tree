@@ -17,6 +17,15 @@ function App() {
     setInputText("");
   }
 
+  // delete the item by filtering the array
+  function deleteItem(id) {
+    setItems((prevItems) => {
+      return prevItems.filter((item, index) => {
+        return index !== id;
+      });
+    });
+  }
+
   return (
     <div className="container">
       <div className="heading">
@@ -30,8 +39,15 @@ function App() {
       </div>
       <div>
         <ul>
-          {items.map((todoItem) => (
-            <TodoItem item={todoItem} />
+          {items.map((todoItem, index) => (
+            <TodoItem
+              //make so that it recognize the uniqe key and id
+              key={index}
+              id={index}
+              // pass the function to TodoItem component
+              onChecked={deleteItem}
+              item={todoItem}
+            />
           ))}
         </ul>
       </div>
